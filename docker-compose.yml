@@ -1,0 +1,24 @@
+services:
+  book-service:
+    build: ./book-service
+    image: book-service:1.0.0
+    ports:
+      - "8080:8080"
+    environment:
+      LOGGING_FILE_NAME: /var/log/app/book-service.log
+    volumes:
+      - app-logs:/var/log/app
+
+  logging-sidecar:
+    build: ./logging-service
+    image: logging-service:1.0.0
+    network_mode: "service:book-service"
+    environment:
+      SIDECAR_WATCHFILE: /var/log/app/book-service.log
+    volumes:
+      - app-logs:/var/log/app:ro
+    depends_on:
+      - book-service
+
+volumes:
+  app-logs:

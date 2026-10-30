@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: book-service
+server:
+  port: 8080
+logging:
+  file:
+    name: ../shared-logs/book-service.log

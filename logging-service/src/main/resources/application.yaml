@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: logging-service
+server:
+  port: 8081
+sidecar:
+  watch-file: ../shared-logs/book-service.log
